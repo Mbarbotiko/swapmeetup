@@ -1,0 +1,113 @@
+.brand-logo {
+  font-family: "Cabin Sketch", cursive;
+}
+
+.show-all img {
+  width: 10%;
+}
+
+.show-all {
+  font-size: 16pt;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+
+.card .card-image .card-title {
+  color: #fff;
+  background-color: #2f4f4f;
+  opacity: 30%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  padding: 3%;
+}
+
+.card .card-image {
+  position: relative;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.page-footer {
+  background-color: #2f4f4f;
+  bottom: 0px;
+}
+
+.card{
+  width:15%;
+  float:left;
+  margin: 1%;
+  min-height: 400px;
+  min-width: 125px;
+  
+}
+.card img{
+  min-height: 150px;
+  width:auto;
+  
+}
+
+#modalform.card{
+  min-height: auto;
+  width:700px;
+  margin-left:-250px;
+  /* background-color:rgb(56, 164, 56); */
+  padding-left:100px;
+  padding-top:0px;
+}
+
+
+#modalheader{
+  text-align:center;
+}
+
+.card-smallSelection{
+  width:20%;
+  float:left;
+  
+}
+
+.card-smallSelection2{
+width:60%;
+  float:left;
+}
+#inner-card.card{
+  width:50%;
+  float:left;
+  margin: 1%;
+  margin-left:15%;
+  min-height: 300px;
+}
+
+#inner-card2.card{
+  width:15%;
+  float:left;
+  margin: 1%;
+  min-height: 200px;
+}
+
+#swapmodalicon{
+  width: 20%;
+  float:left;
+}
+
+#swapmodalicon img{
+  width:20%;
+}
+
+#modaldrop{
+  margin-left:45%;
+  width:100%;
+  float: left;
+}
+
