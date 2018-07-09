@@ -1,14 +1,15 @@
 .brand-logo {
-  font-family: "Cabin Sketch", cursive;
+  font-family: 'Rock Salt', cursive;
+  color:white;
+  margin-left:2%;
 }
 
-.show-all img {
-  width: 10%;
-}
+/* .nav a{
+  font-family: 'Rock Salt', cursive!important;
+  color:white;
+  // Change nav links
 
-.show-all {
-  font-size: 16pt;
-}
+} */
 
 body {
   display: flex;
@@ -17,7 +18,10 @@ body {
 }
 
 main {
-  flex: 1 0 auto;
+  margin-top:5%;
+  width:100%;
+  margin-left:0;
+  
 }
 
 
@@ -28,7 +32,6 @@ main {
   position: absolute;
   bottom: 0;
   left: 0;
-  max-width: 100%;
   padding: 3%;
 }
 
@@ -55,6 +58,12 @@ main {
   min-height: 150px;
   width:auto;
   
+}
+
+.modal{
+  width:100%;
+  min-height:100%;
+  opacity: 0.1;
 }
 
 #modalform.card{

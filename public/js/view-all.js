@@ -19,16 +19,25 @@ $(document).ready(function () {
                 var allUsersNames = printEverything.User.name;
                 var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${printEverything.id}>swap_calls</i></a>`
                 cardContainer.append(
-                    `<div class="col s12 m6 l4">` +
-                    `<div class="card">` +
-                    `<div class="card-image">` +
-                    `<img src='${printEverything.picture}' alt='Item Picture'>` + `<span class="card-title">${allItems}</span>` + icon +
-                    `</div>` +
-                    `<div class="card-content ">` +
+                    `
+                    <div class="col s12 m7">
+                      <div class="card">
+                        <div class="card-image">
+                          <img src='${printEverything.picture}' alt='Item Picture'>
+                          <span class="card-title">${allItems}</span>` + icon +
+                    `</div>
+                        <div class="card-content">`+
                     `<p>${allDescriptions}</p>` + `<p>Category: ${allCategories}<p>` + `<p>Posted by: ${allUsersNames}</p>` +
-                    `</div>` +
-                    `</div>` +
-                    `</div>`);
+                    `</div>
+                        
+                      </div>
+                    </div>
+                  `);
+
+
+
+
+
             });
             var selectedItems = []
             function emptyselectedItemsArr() {
@@ -48,8 +57,8 @@ $(document).ready(function () {
                     })//calling the item they chose and printing it to the modal
                         .then(function (res) {
                             showUsersSelection.html(`<div class="col s12 m6 l4">` +
-                            `<div class="card" id="inner-card">` 
-                            +
+                                `<div class="card" id="inner-card">`
+                                +
                                 `<div class="card-image">` +
                                 `<img src='${res.picture}' alt='Item Picture'>` + `<span class="card-title">${res.item}</span>` +
                                 `</div>` +
@@ -81,39 +90,42 @@ $(document).ready(function () {
                         listOption.attr("value", user.id);
                         listOption.text(user.name);
                         return listOption;
-                        
+
                     };
 
                     $('#user').on('change', function () {
-                        
+
                         var userSelectedItem = $(this).val();
-                        
+
                         $.ajax({
                             url: "/api/users/" + userSelectedItem,
                             method: 'GET'
                         })
                             .then(function (res) {
-                                
+                                showMyStuff.empty()
+
                                 res.Items.forEach(function (printUsersItems) {
                                     var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${printUsersItems.id}>swap_calls</i></a>`
-                                    
+
                                     showMyStuff.append(`<div class="col s12 m6 l4">` +
                                         `<div class="card" id="inner-card2">` +
                                         `<div class="card-image">` +
                                         `<img src='${printUsersItems.picture}' alt='Item Picture'>` + `<span class="card-title">${printUsersItems.item}</span>` + icon +
                                         `</div>`
-                                        +`</div>`);
+                                        + `</div>`);
                                 });
-                                
 
                                 
-                                
+
+
+
+
                             });
 
-                            showMyStuff.empty();
-                            
+                        showMyStuff.empty();
+
                     });
-                    
+
                 }
                 $(document.body).on('click', '#cancel-button', function () {
                     $('.modal').modal("close");
@@ -123,8 +135,9 @@ $(document).ready(function () {
                     userSelect.empty();
                     showMyStuff.empty();//clicking cancel on the modal clears the user selection array and closes the modal.
                 })
-                if(selectedItems.length===2){
+                if (selectedItems.length === 2) {
                     $('#confirm-button').show();
+
                 }
                 $(document.body).on('click', '#confirm-button', function () {
                     $.ajax({
@@ -134,7 +147,7 @@ $(document).ready(function () {
                             itemOne: itemOne,
                             itemTwo: itemTwo
                         }
-                        
+
                     }).then(console.log);
                     //add a loading screen here for 5 seconds then do a reload of the page below:
                     // location.reload()
