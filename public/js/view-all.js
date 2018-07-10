@@ -151,7 +151,7 @@ $(document).ready(function () {
                     }).then(console.log);
                     //add a loading screen here for 5 seconds then do a reload of the page below:
                     // location.reload()
-                    window.location = "/index.html";
+                    window.location = "/view.html";
                 })
             });
         })

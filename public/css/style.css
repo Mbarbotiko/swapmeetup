@@ -10,11 +10,16 @@
   // Change nav links
 
 } */
-
+.nav-wrapper{
+  font-family: 'Rock Salt', cursive;
+  padding-bottom:5%;
+}
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+
+  font-family: 'Rock Salt';
 }
 
 main {
@@ -33,12 +38,14 @@ main {
   bottom: 0;
   left: 0;
   padding: 3%;
+ 
 }
 
 .card .card-image {
   position: relative;
   max-height: 200px;
   object-fit: cover;
+  border-radius:20px;
 }
 
 .page-footer {
@@ -47,6 +54,7 @@ main {
 }
 
 .card{
+  border-radius:20px;
   width:15%;
   float:left;
   margin: 1%;
