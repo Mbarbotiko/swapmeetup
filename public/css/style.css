@@ -69,7 +69,7 @@ main {
 }
 
 .modal{
-  width:100%;
+  max-width:100%;
   min-height:100%;
   opacity: 0.1;
 }
@@ -90,32 +90,17 @@ main {
 
 .card-smallSelection{
 width: 20%;
+position: relative;
+left:15%;
 
 
-}
-
-.card-smallSelection2{
-  width: 20%;
- font-size:2vw;
- float:left;
-
-}
-#inner-card.card{
-  width:20%;
-  float:left;
-  margin: 1%;
-  min-height: 300px;
-}
-
-#inner-card2.card{
-  width:15%;
-  margin: 2%;
-  min-height: 200px;
 }
 
 #swapmodalicon{
-  width: 10%;
+  width: 20%;
   float: left;
+  position: relative;
+  left:30%;
 
 }
 
@@ -126,9 +111,31 @@ width: 20%;
 
 }
 
+.card-smallSelection2{
+  width: 30%;
+ font-size:2vw;
+ float:left;
+ position: relative;
+  left:40%;
+
+}
+#inner-card.card{
+  width:50%;
+  margin: 1%;
+  min-height: 300px;
+}
+
+#inner-card2.card{
+  width:15%;
+  margin: 2%;
+  min-height: 200px;
+}
+
+
+
 #modaldrop{
-  margin-left:45%;
-  float: left;
+  position: relative;
+  left:45%;
 
 }
 
