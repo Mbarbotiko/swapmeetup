@@ -3,18 +3,15 @@ $(document).ready(function () {
     var cardContainer = $(".card-items")
     var showSelection = $(".card-smallSelection")
     var showUserItems = $('.card-smallSelection2')
-    // function clearCardContainer(){
-    //     cardContainer.empty();
-    // }//NEED TO PLACE A CLEAR AFTER INITIAL APPEND TO CLEAR THE CONTAINER OUT get attribute from onclick place into if statement to eliminate all functions there after for ajax call.
-
     var queryURL = "/api/items";
     $('#dropdown1 li').on('click', function () {
+        cardContainer.empty();
         var selectedDropValue = $(this).attr('id')
         console.log(selectedDropValue);
         $.ajax({
             url: queryURL,
             method: 'GET'
-        })//get all items for page 
+        })
             .then(function (res) {
 
                 res.forEach(function (showAll) {
@@ -26,9 +23,8 @@ $(document).ready(function () {
                     var image = pictureIMG;
                     var userNames = showAll.User.name;
                     var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${showAll.id}>swap_calls</i></a>`
-                    if (category === selectedDropValue) {
-                        console.log(selectedDropValue);
-                        function appendAll() {
+                    if (category === selectedDropValue|selectedDropValue === "All-Items") {//on drop down selection appending category items, or appending all items
+                     function appendAll() {
                             cardContainer.append(
                                 ` <div class="col s12 m7">
                           <div class="card">
@@ -43,16 +39,13 @@ $(document).ready(function () {
                           </div>
                         </div>`
                             );
+                            
                         }
-
                         appendAll();
+
                     }
 
                 })
-
-
-
-
 
 
             });
