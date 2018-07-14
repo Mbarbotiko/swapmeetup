@@ -57,19 +57,19 @@ module.exports = function (app) {
 
   app.post("/api/swap", function (req, res) {
     console.log(res);
-    const { itemOne, itemTwo } = req.body;
+    const { selectOne, selectTwo } = req.body;
     db.sequelize.query(
       `update Items a
       inner join Items b on a.id <> b.id
         set a.UserId = b.UserId
       where a.id in (:idA,:idB) and b.id in (:idA,:idB)`,
-      { replacements: { idA: itemOne, idB: itemTwo } }
+      { replacements: { idA: selectOne, idB: selectTwo } }
     )
     .then(() => res.send(200))
     .catch(() => res.send(500));
     console.log(res)
     console.log(res);
-    console.log(itemTwo)
+    console.log(selectTwo)
   });
 
 };

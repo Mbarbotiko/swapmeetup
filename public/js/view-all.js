@@ -1,44 +1,144 @@
 $(document).ready(function () {
     $('#confirm-button').hide();
     var cardContainer = $(".card-items")
-    var showUsersSelection = $(".card-smallSelection")
-    var showMyStuff = $('.card-smallSelection2')
+    var showSelection = $(".card-smallSelection")
+    var showUserItems = $('.card-smallSelection2')
+    // function clearCardContainer(){
+    //     cardContainer.empty();
+    // }//NEED TO PLACE A CLEAR AFTER INITIAL APPEND TO CLEAR THE CONTAINER OUT
+        
+
+
     var queryURL = "/api/items";
     $.ajax({
         url: queryURL,
         method: 'GET'
     })//get all items for page 
         .then(function (res) {
-            res.forEach(function (printEverything) {
+            res.forEach(function (showAll) {
                 var pictureIMG = $("<img>");
-                pictureIMG.attr({ "src": printEverything.picture });
-                var allItems = printEverything.item;
-                var allDescriptions = printEverything.description;
-                var allCategories = printEverything.category;
-                var allImages = pictureIMG;
-                var allUsersNames = printEverything.User.name;
-                var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${printEverything.id}>swap_calls</i></a>`
-                cardContainer.append(
-                    `
-                    <div class="col s12 m7">
-                      <div class="card">
-                        <div class="card-image">
-                          <img src='${printEverything.picture}' alt='Item Picture'>
-                          <span class="card-title">${allItems}</span>` + icon +
-                    `</div>
-                        <div class="card-content">`+
-                    `<p>${allDescriptions}</p>` + `<p>Category: ${allCategories}<p>` + `<p>Posted by: ${allUsersNames}</p>` +
-                    `</div>
+                pictureIMG.attr({ "src": showAll.picture });
+                var item = showAll.item;
+                var description = showAll.description;
+                var category = showAll.category;
+                var image = pictureIMG;
+                var userNames = showAll.User.name;
+                var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${showAll.id}>swap_calls</i></a>`
+
+                function appendApparel() {
+                    if (category === "Apparel") {
+                        appendAll();
+                    }
+
+
+                }
+
+                function appendHomeOffice() {
+                    if (category === "Home/Office") {
+                        appendAll();
+                    }
+
+                }
+
+                function appendTech() {
+                    if (category === "Tech") {
+                        appendAll();
+                    }
+
+                }
+
+                function appendSpouse() {
+                    if (category === "Spouse") {
+                        appendAll();
+                    }
+
+                }
+
+                function appendLunch() {
+                    if (category === "Lunch") {
+                        appendAll();
+                    }
+
+                }
+
+                function appendSwhutever() {
+                    if (category === "Shwutever") {
+                        appendAll();
+                    }
+
+                }
+                function appendAll() {
+                    
+                    
+                    cardContainer.append(
+                        ` <div class="col s12 m7">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src='${showAll.picture}' alt='Item Picture'>
+                              <span class="card-title">${item}</span>` + icon +
+                        `</div>
+                            <div class="card-content">`+
+                        `<p>${description}</p>` + `<p>Category: ${category}<p>` + `<p>Posted by: ${userNames}</p>` +
+                        `</div>
+                            
+                          </div>
+                        </div>
+                      `);
+
+                }
+
+                $('#dropdown1 li').on('click', function () {
+                    var selectedDropValue = $(this).attr('id')
+                    
+                 
+                userMenuChoice();
+                function userMenuChoice() {
+                    console.log(selectedDropValue);
+                    
+
+                    switch (selectedDropValue) {
                         
-                      </div>
-                    </div>
-                  `);
+                        
+                        case "Apparel":
+                            appendApparel()
+                            
+                            break;
+                        case "Home/Office":
+                            appendHomeOffice();
+                            break;
+                        case "Tech":
+                            appendTech();
+                            break;
+                        case "Spouse":
+                            appendSpouse();
+                            break;
+                        case "Lunch":
+                            appendLunch();
+                            break;
+                        case "Shwutever":
+                            appendSwhutever();
+                            break;
+                            case "All-Items":
+                            appendAll();
+                            break;
+                        default:
+                            console.log("Insert an error here later")
+                    }
 
+                    
+               
+                }
 
+                
 
-
+            })
+            
 
             });
+            
+
+
+
             var selectedItems = []
             function emptyselectedItemsArr() {
                 selectedItems = [];
@@ -46,17 +146,17 @@ $(document).ready(function () {
             $(document.body).on('click', '.material-icons', function () {
                 //on click of the material icons collect the attributes which are set to the ID of the item set by database.
                 selectedItems.push($(this).attr('id'));
-                var itemOne = selectedItems[0];
-                var itemTwo = selectedItems[1];
+                var selectOne = selectedItems[0];
+                var selectTwo = selectedItems[1];
                 if (selectedItems.length == 1) {
                     //open the modal when user selects one item they want
                     $('.modal').modal("open");
                     $.ajax({
-                        url: "/api/items/" + itemOne,
+                        url: "/api/items/" + selectOne,
                         method: 'GET'
                     })//calling the item they chose and printing it to the modal
                         .then(function (res) {
-                            showUsersSelection.html(`<div class="col s12 m6 l4">` +
+                            showSelection.html(`<div class="col s12 m6 l4">` +
                                 `<div class="card" id="inner-card">`
                                 +
                                 `<div class="card-image">` +
@@ -68,6 +168,8 @@ $(document).ready(function () {
                                 `</div>` +
                                 `</div>`)
                         });
+
+                    //user entry form
                     var queryURL = "/api/users";
                     $.ajax({
                         url: queryURL,
@@ -92,7 +194,7 @@ $(document).ready(function () {
                         return listOption;
 
                     };
-
+                    //user drop down
                     $('#user').on('change', function () {
 
                         var userSelectedItem = $(this).val();
@@ -102,12 +204,12 @@ $(document).ready(function () {
                             method: 'GET'
                         })
                             .then(function (res) {
-                                showMyStuff.empty()
+                                showUserItems.empty()
 
                                 res.Items.forEach(function (printUsersItems) {
                                     var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${printUsersItems.id}>swap_calls</i></a>`
 
-                                    showMyStuff.append(`<div class="col s12 m6 l4">` +
+                                    showUserItems.append(`<div class="col s12 m6 l4">` +
                                         `<div class="card" id="inner-card2">` +
                                         `<div class="card-image">` +
                                         `<img src='${printUsersItems.picture}' alt='Item Picture'>` + `<span class="card-title">${printUsersItems.item}</span>` + icon +
@@ -115,14 +217,14 @@ $(document).ready(function () {
                                         + `</div>`);
                                 });
 
-                                
+
 
 
 
 
                             });
 
-                        showMyStuff.empty();
+                        showUserItems.empty();
 
                     });
 
@@ -131,9 +233,9 @@ $(document).ready(function () {
                     $('.modal').modal("close");
                     $('#confirm-button').hide();
                     emptyselectedItemsArr();
-                    showUsersSelection.empty();
+                    showSelection.empty();
                     userSelect.empty();
-                    showMyStuff.empty();//clicking cancel on the modal clears the user selection array and closes the modal.
+                    showUserItems.empty();//clicking cancel on the modal clears the user selection array and closes the modal.
                 })
                 if (selectedItems.length === 2) {
                     $('#confirm-button').show();
@@ -144,8 +246,8 @@ $(document).ready(function () {
                         url: "/api/swap",
                         method: 'POST',
                         data: {
-                            itemOne: itemOne,
-                            itemTwo: itemTwo
+                            selectOne: selectOne,
+                            selectTwo: selectTwo
                         }
 
                     }).then(console.log);

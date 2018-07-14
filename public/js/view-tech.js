@@ -1,8 +1,8 @@
 $(document).ready(function () {
     $('#confirm-button').hide();
     var cardContainer = $(".card-items")
-    var showUsersSelection = $(".card-smallSelection")
-    var showMyStuff = $('.card-smallSelection2')
+    var showSelection = $(".card-smallSelection")
+    var showUserItems = $('.card-smallSelection2')
     var queryURL = "/api/items";
     $.ajax({
         url: queryURL,
@@ -15,11 +15,11 @@ $(document).ready(function () {
                 if (techQuery  === "Tech") {
                     var pictureIMG = $("<img>");
                     pictureIMG.attr({ "src": techItem.picture });
-                    var allItems = techItem.item;
-                    var allDescriptions = techItem.description;
-                    var allCategories = techItem.category;
-                    var allImages = pictureIMG;
-                    var allUsersNames = techItem.User.name;
+                    var item = techItem.item;
+                    var description = techItem.description;
+                    var category = techItem.category;
+                    var image = pictureIMG;
+                    var userNames = techItem.User.name;
                     var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${techItem.id}>swap_calls</i></a>`
 
                     cardContainer.append(
@@ -27,10 +27,10 @@ $(document).ready(function () {
                         `<div class="card">` +
                         `<div class="card-image">` +
                         `<img src='${techItem.picture}' alt='Item Picture'>` +
-                        `<span class="card-title">${allItems}</span>` + icon +
+                        `<span class="card-title">${item}</span>` + icon +
                         `</div>` +
                         `<div class="card-content ">` +
-                        `<p>${allDescriptions}</p>` + `<p>Category: ${allCategories}<p>` + `<p>Posted by: ${allUsersNames}</p>` +
+                        `<p>${description}</p>` + `<p>Category: ${category}<p>` + `<p>Posted by: ${userNames}</p>` +
                         `</div>` +
                         `</div>` +
                         `</div>`);
@@ -48,18 +48,18 @@ $(document).ready(function () {
                 //on click of the material icons collect the attributes which are set to the ID of the item set by database.
                 selectedItems.push($(this).attr('id'));
                 console.log(selectedItems);
-                var itemOne = selectedItems[0];
-                var itemTwo = selectedItems[1];
+                var selectOne = selectedItems[0];
+                var selectTwo = selectedItems[1];
                 if (selectedItems.length == 1) {
                     console.log(selectedItems);
                     //open the modal when user selects one item they want
                     $('.modal').modal("open");
                     $.ajax({
-                        url: "/api/items/" + itemOne,
+                        url: "/api/items/" + selectOne,
                         method: 'GET'
                     })//calling the item they chose and printing it to the modal
                         .then(function (res) {
-                            showUsersSelection.html(`<div class="col s12 m6 l4">` +
+                            showSelection.html(`<div class="col s12 m6 l4">` +
                             `<div class="card" id="inner-card">` 
                             +
                                 `<div class="card-image">`+
@@ -109,7 +109,7 @@ $(document).ready(function () {
                                 res.Items.forEach(function (printUsersItems) {
                                     var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${printUsersItems.id}>swap_calls</i></a>`
 
-                                    showMyStuff.append(`<div class="col s12 m6 l4">` +
+                                    showUserItems.append(`<div class="col s12 m6 l4">` +
                                     `<div class="card" id="inner-card2">` +
                                     `<div class="card-image">` +
                                         `<img src='${printUsersItems.picture}' alt='Item Picture'>` + `<span class="card-title">${printUsersItems.item}</span>` + icon +
@@ -120,7 +120,7 @@ $(document).ready(function () {
 
                             });
 
-                        showMyStuff.empty();
+                        showUserItems.empty();
 
                     });
                 }
@@ -128,7 +128,7 @@ $(document).ready(function () {
                     $('.modal').modal("close");
                     $('#confirm-button').hide();
                     emptyselectedItemsArr();
-                    showUsersSelection.empty();
+                    showSelection.empty();
                     userSelect.empty();//clicking cancel on the modal clears the user selection array and closes the modal.
                 })
                 if (selectedItems.length === 2) {
@@ -139,8 +139,8 @@ $(document).ready(function () {
                         url: "/api/swap",
                         method: 'POST',
                         data: {
-                            itemOne: itemOne,
-                            itemTwo: itemTwo
+                            selectOne: selectOne,
+                            selectTwo: selectTwo
                         }
 
                     }).then(console.log);
