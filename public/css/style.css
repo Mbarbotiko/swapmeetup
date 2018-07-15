@@ -30,7 +30,7 @@ main {
 }
 
 
-.card .card-image .card-title {
+/* .card .card-image .card-title {
   color: #fff;
   background-color: #2f4f4f;
   opacity: 30%;
@@ -39,21 +39,21 @@ main {
   left: 0;
   padding: 3%;
  
-}
-
+} */
+/* 
 .card .card-image {
   position: relative;
   max-height: 200px;
   object-fit: cover;
   border-radius:20px;
-}
+} */
 
 .page-footer {
   background-color: #2f4f4f;
   bottom: 0px;
 }
 
-.card{
+/* .card{
   border-radius:20px;
   width:15%;
   float:left;
@@ -61,12 +61,12 @@ main {
   min-height: 400px;
   min-width: 125px;
   
-}
-.card img{
+} */
+/* .card img{
   min-height: 150px;
   width:auto;
   
-}
+} */
 
 .modal{
   max-width:100%;
@@ -139,5 +139,21 @@ left:15%;
 
 }
 
+/*bootstrap cards*/
+.col-md-2{
+  float:left;
 
+}
+
+.card-img-top{
+ max-height: 250px;
+ object-fit:cover;
+
+
+}
+
+.card-body{
+  min-height:250px;
+  object-fit: contain
+}
 

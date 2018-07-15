@@ -3,6 +3,7 @@ $(document).ready(function () {
     var cardContainer = $(".card-items")
     var showSelection = $(".card-smallSelection")
     var showUserItems = $('.card-smallSelection2')
+
     //how to use append all function globally so it can be called multiple times and written only once?
 
     var queryURL = "/api/items";
@@ -20,24 +21,34 @@ $(document).ready(function () {
                 var category = showAll.category;
                 var image = pictureIMG;
                 var userNames = showAll.User.name;
-                var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${showAll.id}>swap_calls</i></a>`
+                var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${showAll.id}>swap_calls</i></a>`//need to add this ID attribute to one of the classes below for swap function
                 function appendAll() {
                     cardContainer.append(
-                        ` <div class="col s12 m7">
-                  <div class="card">
-                    <div class="card-image">
-                      <img src='${showAll.picture}' alt='Item Picture'>
-                      <span class="card-title">${item}</span>` + icon +
-                        `</div>
-                    <div class="card-content">`+
-                        `<p>${description}</p>` + `<p>Category: ${category}<p>` + `<p>Posted by: ${userNames}</p>` +
-                        `</div>
-                    
-                  </div>
-                </div>`
+                        `<div class="col-md-2">` + `
+                        <div class="card card-cascade wider">`+ `
+                            <div class="view view-cascade overlay">`+ `
+                                <img class="card-img-top" src='` + `${showAll.picture}` + `'` + `alt='Item Picture'>` + `
+                                <a href="#!">`+ `
+                                  <div class="mask rgba-white-slight waves-effect waves-light">`+ `</div>` + `
+                                </a>`+ `
+                              </div>`+ `
+                              <div class="card-body card-body-cascade text-center">`+ `
+                                  <h4 class="card-title">`+ `
+                                      <strong>`+ `${item}` + `</strong>` + `
+                                    </h4>`+ `
+                                    <p class="card-text">`+ `
+                                        <p>`+ `${description}` + `</p>` + `<p>Category:` + `${category}` + `<p>` + `<p>Posted by:` + `${userNames}` + `</p>` +
+
+                        `</div>` + `
+                
+                      </div>`+ `
+                
+                    </div>`
                     );
 
                 }
+
+
 
                 appendAll();
             })
