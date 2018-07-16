@@ -23,7 +23,7 @@ $(document).ready(function () {
                 var icon = `<a class="btn-floating halfway-fab waves-effect waves-light green"><i class="material-icons" id=${showAll.id}>swap_calls</i></a>`
                 function appendAll() {
                     cardContainer.append(
-                        ` <div class="col s12 m7">
+                        ` <div class="col s2 m7">
                   <div class="card">
                     <div class="card-image">
                       <img src='${showAll.picture}' alt='Item Picture'>

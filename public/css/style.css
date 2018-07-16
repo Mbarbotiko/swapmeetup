@@ -10,6 +10,10 @@
   // Change nav links
 
 } */
+
+.content{
+  margin-left: 10%;
+}
 .nav-wrapper{
   font-family: 'Rock Salt', cursive;
   padding-bottom:5%;
@@ -41,15 +45,15 @@ main {
  
 }
 
-.card .card-image {
-  position: relative;
+.card-image img {
   max-height: 200px;
   object-fit: cover;
-  border-radius:20px;
+
 }
 
 .page-footer {
   background-color: #2f4f4f;
+  position: relative;
   bottom: 0px;
 }
 
@@ -61,11 +65,20 @@ main {
   min-height: 400px;
   min-width: 125px;
   
+  
 }
 .card img{
   min-height: 150px;
   width:auto;
   
+}
+
+.card-content{
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+  margin-left: 0;
+
+  font-size: 1.5vh;
 }
 
 .modal{
